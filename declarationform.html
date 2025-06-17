@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טופס הצהרת בריאות למתאמן</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .question-group {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .question-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-group:hover {
+            background: #e9ecef;
+        }
+
+        .checkbox-group input[type="checkbox"],
+        .checkbox-group input[type="radio"] {
+            width: auto;
+            transform: scale(1.2);
+            margin: 0;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input[type="radio"] {
+            transform: scale(1.2);
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            color: #856404;
+            font-size: 1rem;
+        }
+
+        .medical-warning {
+            background: #fff5f5;
+            border: 2px solid #fed7d7;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            color: #c53030;
+        }
+
+        .file-upload {
+            margin-top: 15px;
+        }
+
+        .file-upload input[type="file"] {
+            border: 2px dashed #667eea;
+            background: #f8f9ff;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .declaration-section {
+            background: #f0fff4;
+            border: 2px solid #9ae6b4;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .declaration-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2d3748;
+            margin-bottom: 25px;
+        }
+
+        .signature-section {
+            background: white;
+            border: 2px solid #9ae6b4;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .signature-canvas {
+            border: 2px dashed #9ae6b4;
+            border-radius: 10px;
+            display: block;
+            margin: 15px 0;
+            cursor: crosshair;
+            background: white;
+        }
+
+        .signature-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            width: 100%;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            margin-top: 30px;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .email-section {
+            background: #e8f4fd;
+            border: 2px solid #90cdf4;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-content {
+                padding: 25px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>טופס הצהרת בריאות למתאמן</h1>
+            <p>טופס זה נכתב בלשון זכר מטעמי נוחות בלבד, אך מיועד לנשים וגברים כאחד</p>
+        </div>
+
+        <div class="form-content">
+            <form id="healthForm">
+                <!-- חלק 1: פרטים אישיים -->
+                <div class="section">
+                    <h2><span class="section-number">1</span>פרטים אישיים</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">שם מלא *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="idNumber">מספר זהות *</label>
+                            <input type="text" id="idNumber" name="idNumber" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">מספר טלפון *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate">תאריך לידה *</label>
+                            <input type="date" id="birthDate" name="birthDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">עיר מגורים *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">רחוב ומספר בית *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- חלק 2: שאלון רפואי -->
+                <div class="section">
+                    <h2><span class="section-number">2</span>שאלון רפואי</h2>
+                    
+                    <div class="instructions">
+                        <strong>אנא קרא/י את השאלון להלן בצורה יסודית וענה על כל שאלה בכנות באמצעות סימון במשבצת המתאימה.</strong><br>
+                        בשאלות עם תיבות הסימון, למעט התשובה "אף אחת מהם", נחשבת כתשובה חיובית ("כן").<br>
+                        התועלת הבריאותית של פעילות גופנית סדירה ברורה; חשוב שיותר אנשים יהיו פעילים כל ימות השבוע; ביצוע פעילות גופנית בטוחה מאוד לרוב האנשים; השאלון הזה יבהיר לך באילו מקרים עליך להתייעץ עם הרופא ולהביא תעודה רפואית שלך לפני שתתחיל בפעילות.
+                    </div>
+
+                    <!-- שאלה 1: כאבי חזה -->
+                    <div class="question-group">
+                        <div class="question-title">האם אתה חש כאבים בחזה:</div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="chestPain1" name="chestPain" value="rest">
+                            <label for="chestPain1">בזמן מנוחה</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="chestPain2" name="chestPain" value="daily">
+                            <label for="chestPain2">במהלך פעילויות שגרה ביום יום</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="chestPain3" name="chestPain" value="exercise">
+                            <label for="chestPain3">בזמן שאת/ה מבצע/ת פעילות גופנית</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="chestPain4" name="chestPain" value="none">
+                            <label for="chestPain4">אף אחד מהם</label>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 2: אסטמה -->
+                    <div class="question-group">
+                        <div class="question-title">האם איבחן הרופא שאתה סובל ממחלת האסטמה ולכן בשלושת החודשים האחרונים:</div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="asthma1" name="asthma" value="medication">
+                            <label for="asthma1">נזקקת לטיפול תרופתי</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="asthma2" name="asthma" value="breathing">
+                            <label for="asthma2">סבלת מקוצר נשימה או צפצופים</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="asthma3" name="asthma" value="none">
+                            <label for="asthma3">אף אחד מהם</label>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 3: משפחה -->
+                    <div class="question-group">
+                        <div class="question-title">האם אחד מבני משפחתך מדרגת קרבה ראשונה נפטר:</div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="family1" name="family" value="heart">
+                            <label for="family1">ממחלת לב</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="family2" name="family" value="sudden">
+                            <label for="family2">ממוות פתאומי בגיל מוקדם (לפני גיל 55 אם מדובר בגבר ולפני 65 אם זו אישה)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="family3" name="family" value="none">
+                            <label for="family3">אף אחד מהם</label>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 4: סחרחורת -->
+                    <div class="question-group">
+                        <div class="question-title">האם במהלך השנה החולפת איבדת שיווי משקל עקב סחרחורת?</div>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="dizziness_yes" name="dizziness" value="yes">
+                                <label for="dizziness_yes">כן</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="dizziness_no" name="dizziness" value="no">
+                                <label for="dizziness_no">לא</label>
+                            </div>
+                        </div>
+                        
+                        <div id="dizzinessFollowup" style="display: none; margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                            <div class="question-title">אם הסחרחורת נבעה מנשימת יתר (כולל במהלך פעילות גופנית נמרצת):</div>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="hyperventilation_yes" name="hyperventilation" value="yes">
+                                    <label for="hyperventilation_yes">כן</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="hyperventilation_no" name="hyperventilation" value="no">
+                                    <label for="hyperventilation_no">לא</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 5: הנחיית רופא -->
+                    <div class="question-group">
+                        <div class="question-title">האם בחמשת השנים האחרונות קיבלת הנחיה מרופא לבצע פעילות גופנית רק תחת השגחה?</div>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="supervision_yes" name="supervision" value="yes">
+                                <label for="supervision_yes">כן</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="supervision_no" name="supervision" value="no">
+                                <label for="supervision_no">לא</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 6: איבוד הכרה -->
+                    <div class="question-group">
+                        <div class="question-title">האם במהלך השנה החולפת איבדת את הכרתך?</div>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="consciousness_yes" name="consciousness" value="yes">
+                                <label for="consciousness_yes">כן</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="consciousness_no" name="consciousness" value="no">
+                                <label for="consciousness_no">לא</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 7: מחלה כרונית -->
+                    <div class="question-group">
+                        <div class="question-title">האם הנך סובל ממחלה קבועה (כרונית), שאינה נזכרת בשאלות לעיל ועשויה למנוע/להגביל אותך מביצוע פעילות גופנית?</div>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="chronic_yes" name="chronic" value="yes">
+                                <label for="chronic_yes">כן</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="chronic_no" name="chronic" value="no">
+                                <label for="chronic_no">לא</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- שאלה 8: הריון -->
+                    <div class="question-group">
+                        <div class="question-title">האם בהריון? (לנשים בלבד - לא חובה לענות)</div>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="pregnancy_yes" name="pregnancy" value="yes">
+                                <label for="pregnancy_yes">כן</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="pregnancy_no" name="pregnancy" value="no">
+                                <label for="pregnancy_no">לא</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="pregnancy_na" name="pregnancy" value="na">
+                                <label for="pregnancy_na">לא רלוונטי</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- חלק 3: הנחיות -->
+                <div class="section">
+                    <h2><span class="section-number">3</span>הנחיות</h2>
+                    
+                    <div class="medical-warning">
+                        <strong>אם סימנת כן באחת מהשאלות שבשאלון הרפואי לטופס זה לצורך קבלתך לאימון עלייך להמציא גם תעודה רפואית מרופא לפיה הרופא מאשר כי אין סיכון לבריאותך באימון.</strong><br><br>
+                        הגורם המאמן יקבל מתאמן שהמציא תעודה רפואית שלא עברו 3 חודשים ממועד הנפקתה.
+                    </div>
+
+                    <div class="file-upload">
+                        <label for="medicalCertificate">העלאת תעודה רפואית (במידת הצורך):</label>
+                        <input type="file" id="medicalCertificate" name="medicalCertificate" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                    </div>
+                </div>
+
+                <!-- חלק 4: הצהרה -->
+                <div class="section">
+                    <h2><span class="section-number">4</span>הצהרה</h2>
+                    
+                    <div class="declaration-section">
+                        <div class="declaration-text">
+                            <p><strong>אני, החתום מטה, מצהיר כי קראתי והבנתי את כל השאלון הרפואי שבחלק א' לטופס זה ומילאתי אותו בעצמי; אני מצהיר כי מסרתי ידיעות מלאות ונכונות אודות מצבי הרפואי בעבר ובהווה לפי השאלות שנשאלתי בשאלון האמור.</strong></p>
+
+                            <p>אני מכיר בכך שתרגול יוגה, ובפרט אקרויוגה ועמידות ידיים, יכולות להוות סיכון. סיכונים אלו יכולים לכלול פציעות בעצמות, שרירים, רצועות, מפרקים ורקמות אחרות. סיכונים אלו יכולים להתרחש במהלך כל פעילות יוגה, לרבות שיעור, סדנה או תרגול חופשי (ג'אם).</p>
+
+                            <p>אני מודע לסיכון זה ומקבל על עצמי באופן אישי את האחריות לכך. אני מתחייב להשתתף בשיעורי יוגה, סדנאות או ג'אמים רק לאחר קבלת הסכמה מרופא. אני מתחייב להקשיב להוראות המורה/ המדריך ולבצע את התרגילים בצורה בטוחה. אני מתחייב ליידע את המורה או המדריך על כל פציעה או מגבלה פיזית שיש לי.</p>
+
+                            <p>אני מבין שאם אני אשתתף בשיעורי יוגה, סדנאות או ג'אמים, אני עלול להיפצע.
+                            אני מסכים לשאת באחריות לכל פציעה שאירע לי במהלך הפעילות לרבות שיעור, סדנה או תרגול חופשי (ג'אם) וזאת למעט והוכח כי המורה/ מדריך פעלו ברשלנות.</p>
+
+                            <p><strong>אני מאשר כי קראתי והבנתי את ההצהרה זו ואני מסכים לתנאיה.</strong></p>
+
+                            <p><strong>ידוע לי כי לאחר שנתיים מיום חתימתי על הצהרת בריאות זו, אדרש להמציא הצהרת בריאות חדשה.</strong></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">הערות (אופציונלי):</label>
+                            <textarea id="comments" name="comments" rows="4" placeholder="כתוב כאן הערות נוספות אם יש..."></textarea>
+                        </div>
+
+                        <div class="signature-section">
+                            <h3>חתימה דיגיטלית</h3>
+                            <p>אנא חתום במסגרת למטה:</p>
+                            <canvas id="signatureCanvas" class="signature-canvas" width="600" height="200"></canvas>
+                            <div class="signature-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="clearSignature()">נקה חתימה</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- הגדרת מייל -->
+                <div class="email-section">
+                    <div class="form-group">
+                        <label for="recipientEmail">כתובת מייל לקבלת הטופס:</label>
+                        <input type="email" id="recipientEmail" name="recipientEmail" placeholder="הכנס כתובת מייל" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" id="submitBtn">שלח טופס</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                ✅ הטופס נשלח בהצלחה! תודה על מילוי הצהרת הבריאות.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // חתימה דיגיטלית
+        const canvas = document.getElementById('signatureCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let hasSignature = false;
+
+        // הגדרת Canvas
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // תמיכה במסכי מגע
+        canvas.addEventListener('touchstart', handleTouch);
+        canvas.addEventListener('touchmove', handleTouch);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function startDrawing(e) {
+            isDrawing = true;
+            hasSignature = true;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.
